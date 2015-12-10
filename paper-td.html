@@ -6,7 +6,7 @@
 <link rel="import" href="../paper-dialog/paper-dialog.html">
 <link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="../paper-styles/shadow.html">
-<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-input/paper-textarea.html">
 
 <!--
 Table cell for paper-table.
@@ -114,7 +114,7 @@ Add editable tag to make the cell editable. Adding large will cause the edit dia
     <div id="dialog" hidden>
       <div class="content">
         <h2 hidden="{{ !large }}">Edit</h2>
-        <paper-input no-label-float on-keydown="_enterSave"></paper-input>
+        <paper-textarea no-label-float on-keydown="_enterSave"></paper-textarea>
       </div>
       <div class="actions" hidden="{{ !large }}">
         <span flex></span>
