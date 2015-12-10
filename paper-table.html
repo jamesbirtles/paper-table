@@ -60,6 +60,10 @@ Example:
         color: rgba(0, 0, 0, .87);
       }
 
+      .table.fill {
+        width: 100%;
+      }
+
       .header {
         height: 64px;
         padding-left: 24px;
@@ -93,7 +97,7 @@ Example:
     <div class="header">
       <content select="[heading]"></content>
     </div>
-    <div class="table">
+    <div class$="table {{ _tableClass }}">
       <content select="[thead]"></content>
       <content select="[body]"></content>
     </div>
@@ -104,7 +108,25 @@ Example:
 
   Polymer({
     is: 'paper-table',
-    properties: {}
+    properties: {
+
+      /**
+       * Should the table fill it's container
+       */
+      fill: {
+        type: Boolean,
+        value: false
+      },
+
+      _tableClass: {
+        type: String,
+        computed: "_computeTableClass(fill)"
+      }
+    },
+
+    _computeTableClass: function (fill) {
+      return fill ? "fill" : "";
+    }
   });
 
 </script>
