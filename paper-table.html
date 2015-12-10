@@ -1,6 +1,8 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
 <link rel="import" href="../paper-styles/typography.html">
+<link rel="import" href="paper-tr.html">
+<link rel="import" href="paper-td.html">
 
 <!--
 A material design <a href="https://www.google.com/design/spec/components/data-tables.html" target="_blank">data table</a>.
@@ -8,7 +10,26 @@ A material design <a href="https://www.google.com/design/spec/components/data-ta
 
 Example:
 
-    <paper-table></paper-table>
+    <paper-table>
+      <div heading>
+        <span title>Your title</span>
+        <span flex></span>
+        <paper-icon-button icon="filter-list"></paper-icon-button>
+        <paper-icon-button icon="more-vert"></paper-icon-button>
+      </div>
+      <div thead>
+        <paper-td>..</paper-td>
+        <paper-td>..</paper-td>
+        <paper-td>..</paper-td>
+      </div>
+      <div body>
+        <paper-tr>
+          <paper-td>..</paper-td>
+          <paper-td>..</paper-td>
+          <paper-td>..</paper-td>
+        </paper-tr>
+      </div>
+    </paper-table>
 
 @group UnwrittenElements
 @element paper-table
