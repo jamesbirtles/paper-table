@@ -1,0 +1,89 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="bower_components/paper-styles/typography.html">
+
+<!--
+A material design <a href="https://www.google.com/design/spec/components/data-tables.html" target="_blank">data table</a>.
+
+
+Example:
+
+    <paper-table></paper-table>
+
+@group UnwrittenElements
+@element paper-table
+@demo demo/index.html
+-->
+<dom-module id="paper-table">
+
+  <template>
+    <style>
+      .table {
+        display: table;
+      }
+
+      .table::content > div {
+        display: table-row-group;
+      }
+
+      .table::content [thead] {
+        @apply(--paper-font-caption);
+        color: rgba(0, 0, 0, .54);
+        line-height: 56px !important;
+        font-weight: 500 !important;
+      }
+
+      .table::content [body] {
+        @apply(--paper-font-body1);
+        font-size: 13px !important;
+        color: rgba(0, 0, 0, .87);
+      }
+
+      .header {
+        height: 64px;
+        padding-left: 24px;
+      }
+
+      .header::content [heading] {
+        @apply(--layout-horizontal);
+      }
+
+      .header::content [title] {
+        font-size: 20px;
+        color: rgba(0, 0, 0, .87);
+        line-height: 64px;
+      }
+
+      .header::content [flex] {
+        @apply(--layout-flex);
+      }
+
+      .header::content paper-icon-button {
+        margin-top: 12px;
+        margin-right: 8px;
+        color: rgba(0, 0, 0, .54);
+      }
+
+      .header::content paper-icon-button:last-child {
+        margin-right: 6px;
+      }
+    </style>
+
+    <div class="header">
+      <content select="[heading]"></content>
+    </div>
+    <div class="table">
+      <content select="[thead]"></content>
+      <content select="[body]"></content>
+    </div>
+  </template>
+</dom-module>
+
+<script>
+
+  Polymer({
+    is: 'paper-table',
+    properties: {}
+  });
+
+</script>

@@ -1,0 +1,168 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../iron-icons/iron-icons.html">
+<link rel="import" href="../iron-icons/editor-icons.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../paper-dialog/paper-dialog.html">
+<link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="../paper-styles/shadow.html">
+<link rel="import" href="../paper-input/paper-input.html">
+
+<!--
+A material design <a href="https://www.google.com/design/spec/components/data-tables.html" target="_blank">data table</a>.
+
+
+Example:
+
+    <paper-tr></paper-tr>
+
+@group UnwrittenElements
+@element paper-table
+@demo demo/index.html
+-->
+<dom-module id="paper-td">
+
+  <template>
+    <style>
+      :host {
+        display: table-cell;
+        padding-right: 56px;
+        border-bottom: 1px solid rgba(0, 0, 0, .1);
+      }
+
+      :host:last-child {
+        padding-right: 24px;
+      }
+
+      :host:first-child {
+        padding-left: 24px;
+        padding-right: 18px;
+      }
+
+      :host[number] {
+        text-align: right;
+      }
+
+      :host > div#content {
+        @apply(--layout-horizontal);
+      }
+
+      [flex] {
+        @apply(--layout-flex);
+      }
+
+      iron-icon {
+        width: 18px;
+        height: 18px;
+        color: rgba(0, 0, 0, .54);
+        margin-top: 15px;
+        text-align: right;
+        margin-left: 24px;
+      }
+
+      #dialog {
+        position: fixed;
+        background: var(--paper-grey-50);
+        z-index: 10;
+        line-height: 12px;
+        /*display: none;*/
+        @apply(--shadow-elevation-2dp);
+        min-width: 350px;
+      }
+
+      #dialog .content {
+        padding: 24px;
+      }
+
+      #dialog h2 {
+        margin: 0;
+        padding: 0 0 20px;
+      }
+
+      #dialog .actions {
+        @apply(--layout-horizontal);
+        padding: 8px;
+      }
+
+      #dialog .actions paper-button {
+        color: var(--default-primary-color);
+      }
+
+      [flex] {
+        @apply(--layout-flex);
+      }
+    </style>
+
+    <template is="dom-if" if="{{ !editable }}">
+      <content></content>
+    </template>
+    <div id="content" on-click="edit" hidden="{{ !editable }}">
+      <span id="text"><content></content></span>
+      <span flex></span>
+      <iron-icon icon="editor:mode-edit"></iron-icon>
+    </div>
+    <div id="dialog" hidden>
+      <div class="content">
+        <h2 hidden="{{ !large }}">Edit</h2>
+        <paper-input no-label-float on-keydown="enterSave"></paper-input>
+      </div>
+      <div class="actions" hidden="{{ !large }}">
+        <span flex></span>
+        <paper-button on-click="close">Cancel</paper-button>
+        <paper-button on-click="save">Save</paper-button>
+      </div>
+    </div>
+  </template>
+</dom-module>
+
+<script>
+
+  Polymer({
+    is: 'paper-td',
+    properties: {
+      number: {
+        type: Boolean,
+        value: false
+      },
+      editable: {
+        type: Boolean,
+        value: false
+      },
+      large: {
+        type: Boolean,
+        value: false
+      }
+    },
+
+    edit: function () {
+      var dialog = this.$.dialog;
+      dialog.hidden = false;
+      var rect = this.getBoundingClientRect();
+      dialog.style.left = rect.left + "px";
+      dialog.style.top = rect.top + "px";
+      dialog.style.width = rect.width + "px";
+      dialog.querySelector("paper-input").value = this.$.text.innerText.trim();
+    },
+
+    close: function () {
+      this.$.dialog.hidden = true;
+    },
+
+    save: function () {
+      var dialog = this.$.dialog;
+      var newText = dialog.querySelector("paper-input").value;
+      this.$.text.innerText = newText;
+      this.fire("update", newText);
+      this.close();
+    },
+
+    enterSave: function (e) {
+      if (!this.large && e.keyCode === 13) {
+        this.save();
+      } else if (e.keyCode === 27) {
+        this.close();
+      }
+    }
+  });
+
+</script>

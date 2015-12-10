@@ -1,0 +1,106 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>paper-table Demo</title>
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+    <link rel="import" href="../../paper-card/paper-card.html">
+    <link rel="import" href="../../paper-checkbox/paper-checkbox.html">
+    <link rel="import" href="../../iron-icons/iron-icons.html">
+    <link rel="import" href="../../paper-icon/paper-icon-button.html">
+    <link rel="import" href="../paper-table.html">
+    <link rel="import" href="../paper-tr.html">
+    <link rel="import" href="../paper-td.html">
+
+    <link rel="import" href="../../paper-styles/demo-pages.html">
+    <link rel="import" href="../../paper-styles/default-theme.html">
+    <link rel="import" href="../../paper-styles/typography.html">
+
+    <style is="custom-style">
+      * {
+        --default-primary-color: var(--google-blue-500);
+      }
+    </style>
+  </head>
+  <body unresolved>
+    <paper-card>
+      <paper-table>
+        <div heading>
+          <span title>Nutrition</span>
+          <span flex></span>
+          <paper-icon-button icon="filter-list"></paper-icon-button>
+          <paper-icon-button icon="more-vert"></paper-icon-button>
+        </div>
+        <div thead>
+          <paper-td><paper-checkbox noink></paper-checkbox></paper-td>
+          <paper-td>Dessert (100g serving)</paper-td>
+          <paper-td number>Calories</paper-td>
+          <paper-td number>Fat (g)</paper-td>
+          <paper-td number>Carbs (g)</paper-td>
+          <paper-td number>Protein (g)</paper-td>
+          <paper-td number>Sodium (mg)</paper-td>
+          <paper-td number>Calcium (%)</paper-td>
+          <paper-td number>Iron (%)</paper-td>
+        </div>
+        <div body>
+          <paper-tr>
+            <paper-td><paper-checkbox noink></paper-checkbox></paper-td>
+            <paper-td editable>Frozen yogurt</paper-td>
+            <paper-td number>159</paper-td>
+            <paper-td number>6.0</paper-td>
+            <paper-td number>24</paper-td>
+            <paper-td number>4.0</paper-td>
+            <paper-td number>87</paper-td>
+            <paper-td number>14%</paper-td>
+            <paper-td number>1%</paper-td>
+          </paper-tr>
+          <paper-tr>
+            <paper-td><paper-checkbox noink></paper-checkbox></paper-td>
+            <paper-td editable large>Ice cream sandwich</paper-td>
+            <paper-td number>237</paper-td>
+            <paper-td number>9.0</paper-td>
+            <paper-td number>37</paper-td>
+            <paper-td number>4.3</paper-td>
+            <paper-td number>129</paper-td>
+            <paper-td number>8%</paper-td>
+            <paper-td number>1%</paper-td>
+          </paper-tr>
+          <paper-tr>
+            <paper-td><paper-checkbox noink></paper-checkbox></paper-td>
+            <paper-td editable>Eclair</paper-td>
+            <paper-td number>262</paper-td>
+            <paper-td number>16.0</paper-td>
+            <paper-td number>24</paper-td>
+            <paper-td number>6.0</paper-td>
+            <paper-td number>337</paper-td>
+            <paper-td number>6%</paper-td>
+            <paper-td number>7%</paper-td>
+          </paper-tr>
+          <paper-tr>
+            <paper-td><paper-checkbox noink></paper-checkbox></paper-td>
+            <paper-td editable>Cupcake</paper-td>
+            <paper-td number>305</paper-td>
+            <paper-td number>3.7</paper-td>
+            <paper-td number>67</paper-td>
+            <paper-td number>4.3</paper-td>
+            <paper-td number>413</paper-td>
+            <paper-td number>3%</paper-td>
+            <paper-td number>8%</paper-td>
+          </paper-tr>
+          <paper-tr>
+            <paper-td><paper-checkbox noink></paper-checkbox></paper-td>
+            <paper-td editable>Gingerbread</paper-td>
+            <paper-td number>375</paper-td>
+            <paper-td number>16.0</paper-td>
+            <paper-td number>49</paper-td>
+            <paper-td number>3.9</paper-td>
+            <paper-td number>327</paper-td>
+            <paper-td number>7%</paper-td>
+            <paper-td number>16%</paper-td>
+          </paper-tr>
+        </div>
+      </paper-table>
+    </paper-card>
+  </body>
+</html>

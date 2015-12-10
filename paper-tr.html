@@ -1,0 +1,49 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+A material design <a href="https://www.google.com/design/spec/components/data-tables.html" target="_blank">data table</a>.
+
+
+Example:
+
+    <paper-tr></paper-tr>
+
+@group UnwrittenElements
+@element paper-table
+@demo demo/index.html
+-->
+<dom-module id="paper-tr">
+  <template>
+    <style>
+      :host {
+        display: table-row;
+        height: 48px;
+        line-height: 48px;
+      }
+
+      :host:last-child {
+        height: 56px;
+      }
+
+      :host:last-child::content paper-td {
+        border-bottom: none;
+      }
+
+      :host:hover {
+        background: var(--paper-grey-200)
+      }
+    </style>
+
+    <content></content>
+  </template>
+</dom-module>
+
+<script>
+
+  Polymer({
+    is: 'paper-tr',
+    properties: {
+    }
+  });
+
+</script>
