@@ -21,7 +21,7 @@ bower install UnwrittenFun/paper-table --save
     <paper-td>..</paper-td>
     <paper-td>..</paper-td>
   </div>
-  <div tbody>
+  <div body>
     <paper-tr>
       <paper-td>..</paper-td>
       <paper-td>..</paper-td>
