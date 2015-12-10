@@ -166,7 +166,7 @@ Add editable tag to make the cell editable. Adding large will cause the edit dia
       dialog.style.left = rect.left + "px";
       dialog.style.top = rect.top + "px";
       dialog.style.width = rect.width + "px";
-      dialog.querySelector("paper-input").value = this.$.text.innerText.trim();
+      dialog.querySelector("paper-textarea").value = this.$.text.innerText.trim();
     },
 
     /**
@@ -181,7 +181,7 @@ Add editable tag to make the cell editable. Adding large will cause the edit dia
      */
     save: function () {
       var dialog = this.$.dialog;
-      var newText = dialog.querySelector("paper-input").value;
+      var newText = dialog.querySelector("paper-textarea").value;
       this.$.text.innerText = newText;
       this.fire("update", newText);
       this.close();
