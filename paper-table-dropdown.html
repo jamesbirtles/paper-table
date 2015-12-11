@@ -1,0 +1,66 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../paper-menu/paper-menu.html">
+<link rel="import" href="../paper-item/paper-item.html">
+
+<!--
+A paper-dropdown-menu, tweaked for tables.
+
+Example:
+
+    <paper-td>
+      <paper-table-dropdown>
+        <paper-item>First Item</paper-item>
+        <paper-item>Second Item</paper-item>
+        <paper-item>Third Item</paper-item>
+      </paper-table-dropdown>
+    </paper-td>
+
+@group UnwrittenElements
+@element paper-table
+-->
+<dom-module id="paper-table-dropdown">
+  <template>
+    <style>
+      ::content .underline {
+        display: none;
+      }
+
+      ::content paper-input-container {
+        padding: 0;
+      }
+    </style>
+    <paper-dropdown-menu id="dropdown" no-label-float noink>
+      <paper-menu class="dropdown-content" required selected="{{ selected }}">
+        <content></content>
+      </paper-menu>
+    </paper-dropdown-menu>
+  </template>
+</dom-module>
+
+<script>
+
+  Polymer({
+    is: 'paper-table-dropdown',
+    properties: {
+      selected: {
+        type: Number,
+        notify: true,
+        observer: "_selectedChanged"
+      }
+    },
+
+    _selectedChanged: function (sel, old) {
+      if (old === undefined) {
+        return;
+      }
+      var item = this.$.dropdown.querySelectorAll("paper-item")[sel];
+      this.fire("changed", {
+        index: sel,
+        value: item.textContent.trim(),
+        item: item
+      })
+    }
+  });
+
+</script>
