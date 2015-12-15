@@ -1,0 +1,151 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="paper-table.html">
+<link rel="import" href="paper-tr.html">
+<link rel="import" href="paper-td.html">
+
+<!--
+A material design <a href="https://www.google.com/design/spec/components/data-tables.html" target="_blank">data table</a> generated from json data supplied.
+
+
+Example:
+
+    <paper-data-table
+      data='[{"dessert": "Frozen yogurt", "calories": 159}, {"dessert": "Ice cream sandwich", "calories": 237}]'
+      headings='{"dessert": "Dessert (100g serving)"}'></paper-data-table>
+
+@group UnwrittenElements
+@element paper-table
+@demo demo/paper-data-table.html
+-->
+<dom-module id="paper-data-table">
+  <template>
+    <paper-table fill="[[fill]]">
+      <content></content>
+      <div thead>
+        <template is="dom-repeat" items="[[ headingsArray ]]">
+          <paper-td>[[ item ]]</paper-td>
+        </template>
+      </div>
+      <div body>
+        <template is="dom-repeat" items="[[ data ]]">
+          <paper-tr>
+            <template is="dom-repeat" items="[[ _getValues(item) ]]">
+              <paper-td number$="{{ _isNumber(item) }}">[[ item ]]</paper-td>
+            </template>
+          </paper-tr>
+        </template>
+      </div>
+    </paper-table>
+
+  </template>
+</dom-module>
+
+<script>
+
+  Polymer({
+    is: 'paper-data-table',
+    properties: {
+      /**
+       * Array of objects to fill the table with
+       */
+      data: {
+        type: Array,
+        value: []
+      },
+
+      /**
+       * Optional headings object to customise the heading names
+       */
+      headings: {
+        type: Object,
+        value: {}
+      },
+
+      /**
+       * Comma separated list of ignored keys/headings
+       */
+      ignored: {
+        type: String,
+        value: "",
+        notify: true
+      },
+
+      /**
+       * Should the table fill it's container
+       */
+      fill: {
+        type: Boolean,
+        value: false
+      },
+
+      headingsArray: {
+        type: Array,
+        readOnly: true,
+        computed: "_computeHeadings(headings, data, ignoredArray)"
+      },
+
+      ignoredArray: {
+        type: Array,
+        readOnly: true,
+        computed: "_computeIgnored(ignored)"
+      }
+    },
+
+    _toArray: function (obj) {
+      return Object.keys(obj).map(function (key) {
+        return {
+          key: key,
+          value: obj[key]
+        };
+      });
+    },
+
+    _getHeading: function (heading) {
+      if (this.headings.hasOwnProperty(heading)) {
+        return this.headings[heading];
+      } else {
+        return heading.replace(/([A-Z])/g, ' $1')
+            .replace(/^./, function (str) {
+              return str.toUpperCase();
+            });
+      }
+    },
+
+    _isNumber: function (value) {
+      return typeof value === "number";
+    },
+
+    _computeHeadings: function (headings, data, ignoredArray) {
+      var headingsArray = [];
+      if (data.length > 0) {
+        for (var keys = Object.keys(data[0]), i = 0, len = keys.length; i < len; i++) {
+          var key = keys[i];
+          if (ignoredArray.indexOf(key) === -1) {
+            headingsArray.push(headings[key] || this._getHeading(key));
+          }
+        }
+      }
+
+      return headingsArray;
+    },
+
+    _computeIgnored: function (ignored) {
+      if (ignored == null) return [];
+      return ignored.split(",").map(function (value) {
+        return value.trim();
+      })
+    },
+
+    _getValues: function (item) {
+      var valuesArray = [];
+      for (var keys = Object.keys(item), i = 0, len = keys.length; i < len; i++) {
+        var key = keys[i], value = item[key];
+        if (this.ignoredArray.indexOf(key) === -1) {
+          valuesArray.push(value);
+        }
+      }
+      return valuesArray;
+    }
+  });
+
+</script>

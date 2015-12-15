@@ -1,0 +1,24 @@
+[
+  {
+    "uuid": "25b30337-ff25-4b5c-8727-499e0eef1a62",
+    "dessert": "Frozen yogurt",
+    "calories": 159,
+    "fat": 6.0,
+    "carbs": 24,
+    "protein": 4.0,
+    "sodium": 87,
+    "calcium": "14%",
+    "iron": "1%"
+  },
+  {
+    "uuid": "acdf41c9-c241-4434-8166-1cbf4e14c2f8",
+    "dessert": "Ice Cream Sandwich",
+    "calories": 237,
+    "fat": 9.0,
+    "carbs": 37,
+    "protein": 4.3,
+    "sodium": 129,
+    "calcium": "8%",
+    "iron": "1%"
+  }
+]
